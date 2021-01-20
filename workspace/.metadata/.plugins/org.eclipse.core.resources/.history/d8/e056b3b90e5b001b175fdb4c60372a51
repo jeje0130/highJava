@@ -1,0 +1,10 @@
+package pdfBox;
+
+public class PdfBoxWriteText {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;kr.or.ddit.basic.tcp.Tcpclient01&apos; to &apos;TcpClient01&apos;&#x0D;&#x0A;- Original project: &apos;javaNetwork&apos;&#x0D;&#x0A;- Original element: &apos;kr.or.ddit.basic.tcp.Tcpclient01&apos;&#x0D;&#x0A;- Renamed element: &apos;kr.or.ddit.basic.tcp.TcpClient01&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Tcpclient01&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;kr.or.ddit.basic.tcp{Tcpclient01.java[Tcpclient01" matchStrategy="1" name="TcpClient01" qualified="false" references="true" similarDeclarations="false" stamp="1611128359592" textual="false" version="1.0"/>
+</session>

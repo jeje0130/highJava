@@ -1,0 +1,30 @@
+package kr.or.ddit.basic;
+
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class DataIOTest {
+
+	public static void main(String[] args) {
+		try {
+			FileOutputStream fout = new FileOutputStream("d:/d_other/test.dat");
+			
+			//자료형 단위로 출력할 보조 스트림 DataOutputStream객체 생성
+			DataOutputStream dos = new DataOutputStream(fout);
+			
+			dos.writeInt(200);
+			dos.writeFloat(123.45f);
+			dos.writeBoolean(false);
+			dos.writeUTF("ABCDabcd");
+			
+			System.out.println("출력완료");
+			dos.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}
