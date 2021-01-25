@@ -1,0 +1,13 @@
+package kr.or.ddit.basic;
+
+
+//문제2) lprod_id값을 2개 입력받아 두 값중 작은 값부터 큰 값 사이의 자료들을 출력하시오.
+
+public class jdbcTest03 {
+
+	public static void main(String[] args) {
+		
+
+	}
+
+}
