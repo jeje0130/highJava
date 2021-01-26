@@ -47,7 +47,7 @@ public class JdbcTest04 {
 				System.out.println("MEM_ID : " + rs.getString("MEM_ID"));
 				System.out.println("MEM_NAME : " + rs.getString("MEM_NAME"));
 				System.out.println("MEM_ZIP : " + rs.getString("MEM_ZIP"));
-				System.out.println("MEM_REGNO : " + rs.getString("MEM_ADD1") + rs.getString("MEM_ADD2"));
+				System.out.println("MEM_REGNO : " + rs.getString("MEM_ADD1") + " "+ rs.getString("MEM_ADD2"));
 				System.out.println("-------------------------------------------");
 			}
 			
