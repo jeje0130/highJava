@@ -249,7 +249,7 @@ public class PhoneBookTest {
    }
    
    
-   // 파일에 저장된 전화번호 정보를 읽어오는 메서드
+   /*// 파일에 저장된 전화번호 정보를 읽어오는 메서드
    private HashMap<String, Phone> load(){
 	   //읽어온 데이터가 저장될 변수 선언
 	   HashMap<String, Phone> pMap = null;
@@ -278,7 +278,7 @@ public class PhoneBookTest {
 		//사용했던 스트림 객체 닫기
 		try { ois.close(); 	} catch (IOException e2) { }
 	}
-   }
+   }*/
    
    //전화번호 정보를 저장하는 메서드
    private void save(){
