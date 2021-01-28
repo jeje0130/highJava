@@ -1,0 +1,25 @@
+package kr.or.ddit.basic.mvc.dao;
+
+import kr.or.ddit.basic.mvc.vo.MemberVO;
+
+/**
+ * 실제 DB와 연결해서 SQL문을 수행하여 결과를 작성해서 
+ * Service에 전달하는 interface
+ * 
+ * 각각의 메서드 하나가 DB와 관련된 작업 1개를 수행하도록 작성한다.
+ * 
+ * @author PC-02
+ *
+ */
+
+public interface IMemberDao {
+	/**
+	 * MemberVO객체에 담겨진 자료를 DB에 insert하는 메서드
+	 * 
+	 * @param memVo   insert할 데이터가 저장된 MemberVO객체
+	 * 
+	 * @return  insert 성공 : 1 , 실패 : 0  반환
+	 */
+	public int insertMember(MemberVO memVo);
+	
+}

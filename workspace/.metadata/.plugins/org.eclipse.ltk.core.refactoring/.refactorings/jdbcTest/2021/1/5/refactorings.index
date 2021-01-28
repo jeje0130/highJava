@@ -3,3 +3,11 @@
 1611733961270	Rename type 'ResouceBundleTest'
 1611734300544	Copy file
 1611734384170	Copy compilation unit
+1611810202208	Rename package 'kr.or.ddit.basic.dao'
+1611810210613	Rename package 'kr.or.ddit.basic.service'
+1611816577241	Delete element
+1611816831301	Delete element
+1611816834773	Delete element
+1611816845597	Delete element
+1611817625261	Copy compilation unit
+1611817655176	Rename type 'JdbcTest07'

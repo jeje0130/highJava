@@ -1,0 +1,5 @@
+package kr.or.ddit.basic.mvc.vo;
+
+public class MemberVO {
+
+}
