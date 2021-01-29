@@ -1,0 +1,15 @@
+package kr.or.ddit.basic.singleton;
+
+public class SingletonTest {
+
+	public static void main(String[] args) {
+		// 외부에서 new명령으로 생성 불가
+		//Mysingleton test1 = new MySingleton;   => 오류
+
+		
+		Mysingleton test2 = Mysingleton.getInstance();
+		
+		System.out.println("test2 = " + test2);
+	}
+
+}

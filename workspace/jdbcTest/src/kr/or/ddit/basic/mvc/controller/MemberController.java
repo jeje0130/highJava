@@ -3,17 +3,15 @@ package kr.or.ddit.basic.mvc.controller;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import kr.or.ddit.basic.mvc.service.IMemberService;
 import kr.or.ddit.basic.mvc.service.MemberServiceImpl;
 import kr.or.ddit.basic.mvc.vo.MemberVO;
-import kr.or.ddit.util.DBUtil;
-import kr.or.ddit.util.DBUtil2;
-import kr.or.ddit.util.DBUtil3;
 
 /*
  * - 회원을 관리하는 프로그램을 작성하시오.
@@ -41,7 +39,7 @@ public class MemberController {
 	private IMemberService service;
 
 	public MemberController(){
-		service = new MemberServiceImpl();
+		service = MemberServiceImpl.getInstance();
 	}
 
 	Connection conn = null;
@@ -107,7 +105,7 @@ public class MemberController {
 
 
 	private void selectAll(){
-		
+
 		List<MemberVO> memList = service.getAllMember();
 
 		System.out.println();
@@ -125,23 +123,23 @@ public class MemberController {
 				System.out.println(memVo.getMem_addr()+"\t");
 			}
 		}
-		
+
 		System.out.println("---------------------------------------");
 		System.out.println("출력끝");
 		System.out.println();
 
 
 	}
-	
-	
+
+
 
 	//원하는 컬럼만 수정
 	private void update2(){
-		
-		/*
+
+
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		  
+
 		System.out.println();
 		System.out.print("수정할 회원 아이디 입력> ");
 		String memId = scan.next();
@@ -189,30 +187,21 @@ public class MemberController {
 		System.out.print("새로운 " + updatestr + ">>");
 		String updateData = scan.nextLine();
 
+		// 수정할 정보를 Map에 추가한다.
+		// key값 => 회원ID(memId), 수정할 컬럼명(field), 수정할 데이터(data)
+		Map<String, String> paramMap = new HashMap<>();
+		paramMap.put("memId", memId);
+		paramMap.put("field", updateField);
+		paramMap.put("data", updateData);
 
-		try {
-			conn = DBUtil.getConnection();
+		int cnt = service.updateMember2(paramMap);
 
-			String sql = "UPDATE MYMEMBER SET " + updateField  + " = ? " + " where MEM_ID = ?";
-			pstmt = conn.prepareStatement(sql);
+		if(cnt>0){
+			System.out.println("자료 수정 성공");
+		}else{
+			System.out.println("자료 수정 실패");
+		}
 
-			pstmt.setString(1, updateData);
-			pstmt.setString(2, memId);
-
-			int cnt = pstmt.executeUpdate();
-
-			if(cnt>0){
-				System.out.println("자료 수정 성공");
-			}else{
-				System.out.println("자료 수정 실패");
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			if(pstmt!=null) try{pstmt.close();}catch (SQLException e2) {}
-			if(conn!=null) try{conn.close();}catch (SQLException e2) {}
-		} */
 
 
 	}

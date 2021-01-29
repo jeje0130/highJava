@@ -1,0 +1,10 @@
+package board.dao;
+
+import board.vo.BoardVO;
+
+public interface IBoardDao {
+
+	public int insertBoard(BoardVO boardVo);
+	
+	
+}

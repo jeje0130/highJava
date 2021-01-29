@@ -14,6 +14,7 @@ public class MemberVO {  //테이블 하나당 VO 한개
 	private String mem_tel;
 	private String mem_addr;
 	
+	
 	// 만약에 생성자를 만들었을 때는 반드시 기본 생성자도 같이 만들어준다.
 	
 	

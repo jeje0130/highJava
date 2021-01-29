@@ -1,6 +1,7 @@
 package kr.or.ddit.basic.mvc.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.or.ddit.basic.mvc.vo.MemberVO;
 
@@ -57,5 +58,7 @@ public interface IMemberService {
       
       
       public int getMemberCount(String memId);
+      
+      public int updateMember2 (Map<String, String> paraMap);
    
 }

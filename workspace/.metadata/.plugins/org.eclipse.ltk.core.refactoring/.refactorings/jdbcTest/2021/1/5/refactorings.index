@@ -11,3 +11,5 @@
 1611816845597	Delete element
 1611817625261	Copy compilation unit
 1611817655176	Rename type 'JdbcTest07'
+1611897207832	Rename type 'Mysinglton'
+1611897216169	Rename package 'kr.or.ddit.basic.singlton'
