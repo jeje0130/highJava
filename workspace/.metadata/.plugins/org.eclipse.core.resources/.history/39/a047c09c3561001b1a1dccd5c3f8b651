@@ -1,6 +1,0 @@
-package kr.or.ddit.basic.mvc.service;
-
-public class MemberServiceImpl implements IMemberService {
-
-	//Service객체는 Dao객체를 사용하기 때문에 Dao객체가
-}

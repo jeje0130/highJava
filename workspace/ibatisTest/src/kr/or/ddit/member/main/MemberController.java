@@ -1,5 +1,9 @@
 package kr.or.ddit.member.main;
 
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,13 +13,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+
 import kr.or.ddit.member.service.IMemberService;
 import kr.or.ddit.member.service.MemberServiceImpl;
+import kr.or.ddit.util.CryptoUtil;
 import kr.or.ddit.vo.MemberVO;
 
 /*
  * - 회원을 관리하는 프로그램을 작성하시오.
  *   (오라클 DB의 mymember 테이블 이용)
+ *   (회원ID를 암호화 시켜서 DB에 저장하고, 화면에 보여줄때는 원래의 데이터로 복호화시켜서 보여준다)
  *   
  * - 아래 메뉴의 기능을 모두 구현하시오 (CRUD 구현하기 연습)
  * 메뉴 예시 )
@@ -33,6 +43,9 @@ import kr.or.ddit.vo.MemberVO;
 
 
 public class MemberController {
+	
+	private static final String key = "a1b2c3d4e5f6g7h8";
+	
 	private Scanner scan = new Scanner(System.in);
 
 	// Controller는 Service객체를 사용하기 때문에 Service객체가 저장될 변수가 필요하다.
@@ -47,14 +60,14 @@ public class MemberController {
 	ResultSet rs = null;
 	PreparedStatement pstmt = null;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InvalidKeyException, UnsupportedEncodingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException {
 		new MemberController().myMember();
 
 
 
 	}
 
-	private void myMember(){
+	private void myMember() throws InvalidKeyException, UnsupportedEncodingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException{
 
 		while(true){
 			int choice = menu();
@@ -104,7 +117,7 @@ public class MemberController {
 
 
 
-	private void selectAll(){
+	private void selectAll() throws InvalidKeyException, UnsupportedEncodingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException{
 
 		List<MemberVO> memList = service.getAllMember();
 
@@ -117,7 +130,10 @@ public class MemberController {
 			System.out.println("등록된 회원이 하나도 없습니다");
 		}else{
 			for(MemberVO memVo : memList){
-				System.out.print(memVo.getMem_id()+"\t");
+				
+				String memId3 =CryptoUtil.decryptAES256(memVo.getMem_id(), key);
+				
+				System.out.print(memId3+"\t");
 				System.out.print(memVo.getMem_name()+"\t");
 				System.out.print(memVo.getMem_tel()+"\t");
 				System.out.println(memVo.getMem_addr()+"\t");
@@ -269,25 +285,31 @@ public class MemberController {
 
 
 
-	private void insert() {
+	private void insert() throws InvalidKeyException, UnsupportedEncodingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException {
 
 		System.out.println();
 		System.out.println("멤버 정보 추가하기");
 
 		int count =0;
 		String memId;
+		String memId2;
 		do{
 			System.out.print("아 이 디 >> ");
 			memId = scan.next();
 
-			count = service.getMemberCount(memId);
+			memId2 = CryptoUtil.encryptAES256(memId, key);
+			
+			count = service.getMemberCount(memId2);
 
+			
 			if(count > 0){
 				System.out.println("입력한 아이디  " +  memId + "는 이미 등록된 아이디입니다.");
 				System.out.println("다시 입력하세요");
 			}
 		}while(count>0);
-
+		
+		
+		
 
 		System.out.print("이   름 : ");
 		String memName = scan.next();
@@ -302,7 +324,7 @@ public class MemberController {
 
 		// Service로 보낼 MemberVO객체를 생성하고 입력한 자료를 셋팅한다.
 		MemberVO memVo = new MemberVO();
-		memVo.setMem_id(memId);
+		memVo.setMem_id(memId2);
 		memVo.setMem_name(memName);
 		memVo.setMem_tel(memTel);
 		memVo.setMem_addr(memAddr);
