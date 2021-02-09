@@ -13,9 +13,10 @@
 </a>
 <hr>
 
-<h2>GET방식 요청 방법 1 ==> form태그의 method속성을 생략하거나 
+<h2>GET방식 요청 방법 2 ==> form태그의 method속성을 생략하거나 
 'get'으로 설정한 경우</h2>
 <form action="http://localhost/servletTest/servletTest03.do" method="get">
+	<input type="button" id="btn" value="스크립트 GET방식 요청">
 	<input type="submit" value="Get 방식 요청 2">
 </form>
 <br><hr>
@@ -24,6 +25,15 @@
 <form action="http://localhost/servletTest/servletTest03.do" method="post">
 	<input type="submit" value="Post 방식 요청">
 </form>
+<br><hr>
+
+<script>
+var btn = document.getElementById("btn");
+btn.onclick = function () {
+	location.href="http://localhost/servletTest/servletTest03";
+}
+
+</script>
 
 </body>
 </html>
