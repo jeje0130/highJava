@@ -11,27 +11,25 @@
 </head>
 <body>
 
-<h1><%=request.getAttribute("memId")%>님이 방금 업로드한 파일 목록</h1>
+<h1>업로드한 전체 파일 목록</h1>
 
 <table border="1">
 <thead>
 	<tr>
 		<th>파일 이름</th>
 		<th>파일 크기</th>
-		<th>업로드 상태</th>
-		<th>다운로드</th>
+		<th>비고</th>
 	</tr>
 </thead>
 <tbody>
 <%
-	List<UploadDetail> uploadList = (List<UploadDetail>)request.getAttribute("uploadList");
+	List<UploadDetail> uploadList = (List<UploadDetail>)request.getAttribute("allFileList");
 	if(uploadList != null && uploadList.size() > 0){
 		for(UploadDetail detail : uploadList){
 %>
 	<tr>
 		<td><%=detail.getFileName()%></td>
 		<td><%=detail.getFileSize()%></td>
-		<td><%=detail.getUploadStatus()%></td>
 		<td>
 			<a href="<%=request.getContextPath()%>/downloadServlet.do?filename=<%=detail.getFileName()%>">DownLoad</a>
 		</td>
