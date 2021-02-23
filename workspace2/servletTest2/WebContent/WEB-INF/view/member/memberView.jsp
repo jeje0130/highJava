@@ -16,9 +16,19 @@ $(function(){
 	
 	//수정 버튼 클릭 처리
 		$('#updateBtn').on('click', function () {
-			
-		})
+			var memForm = document.getElementById("memberForm");
+			memForm.action = "<%=request.getContextPath()%>/member/memberUpdateForm.ddit";
+			memForm.submit();
+		});
 	//삭제 버튼 클릭 처리
+		$('#deleteBtn').on('click', function () {
+			var memForm = $("#memberForm").get(0);
+			memForm.action = "<%=request.getContextPath()%>/member/memberDelete.ddit";
+			memForm.submit();
+		})
+				
+				
+				
 });
 </script>
 </head>
@@ -33,7 +43,7 @@ $(function(){
 	<table border="1">
       <tr>
          <td>회원ID</td>
-         <td><%=memVo.getMem_addr()%></td>
+         <td><%=memVo.getMem_id()%></td>
       </tr>
       <tr>
          <td>회원이름</td>
